@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column           | type    | options  |
-| ---------------- |-------- |--------- |
-| nickname         | string  | NOT NULL |
-| email            | string  | NOT NULL |
-| password         | string  | NOT NULL |
-| family_name      | string  | NOT NULL |
-| first_name       | string  | NOT NULL |
-| family_name_kana | string  | NOT NULL |
-| first_name_kana  | string  | NOT NULL |
-| birth_day        | integer | NOT NULL |
+| Column             | type    | options  |
+| ----------------   |-------- |--------- |
+| nickname           | string  | NOT NULL |
+| email              | string  | NOT NULL |
+| encrypted_password | string  | NOT NULL |
+| family_name        | string  | NOT NULL |
+| first_name         | string  | NOT NULL |
+| family_name_kana   | string  | NOT NULL |
+| first_name_kana    | string  | NOT NULL |
+| birth_day          | date    | NOT NULL |
 
 ### Association
 
@@ -20,18 +20,17 @@
 
 ## items テーブル
 
-| Column       | type        | options            |
-| -------------|------------ |------------------- |
-| image        |             | NOT NULL           |
-| title        | string      | NOT NULL           |
-| description  | text        | NOT NULL           |
-| category     | ActiveHash  | NOT NULL           |
-| condition    | ActiveHash  | NOT NULL           |
-| delivery_fee | ActiveHash  | NOT NULL           |
-| area         | ActiveHash  | NOT NULL           |
-| days         | ActiveHash  | NOT NULL           |
-| price        | integer     | NOT NULL           |
-| user         | references  | foreign_key : true |
+| Column          | type        | options            |
+| --------------- |------------ |------------------- |
+| title           | string      | NOT NULL           |
+| description     | text        | NOT NULL           |
+| category_id     | integer     | NOT NULL           |
+| condition_id    | integer     | NOT NULL           |
+| delivery_fee_id | integer     | NOT NULL           |
+| area_id         | integer     | NOT NULL           |
+| days_id         | integer     | NOT NULL           |
+| price           | integer     | NOT NULL           |
+| user            | references  | foreign_key : true |
 
 ### Association
 
@@ -48,21 +47,21 @@
 ### Association
 
 - belongs_to :users
-- has_one :items
+- belongs_to :items
 - has_one :address
 
 ## address テーブル
 
 | Column       | type       | options            |
 | ------------ |----------- |------------------- |
-| postal_code  | integer    | NOT NULL           |
-| prefecture   | ActiveHash |                    |
-| city         | ActiveHash |                    |
+| postal_code  | string     | NOT NULL           |
+| area_id      | integer    |                    |
+| city         | string     |                    |
 | house_number | string     | NOT NULL           |
 | building     | string     |                    |
 | phone_number | string     | NOT NULL           |
-
+| purchase     | references | foreign_key : true |
 
 ### Association
 
-- has_one :purchase
+- belongs_to :purchase

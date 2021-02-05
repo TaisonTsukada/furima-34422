@@ -1,24 +1,68 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column           | type    | options  |
+| ---------------- |-------- |--------- |
+| nickname         | string  | NOT NULL |
+| email            | string  | NOT NULL |
+| password         | string  | NOT NULL |
+| family_name      | string  | NOT NULL |
+| first_name       | string  | NOT NULL |
+| family_name_kana | string  | NOT NULL |
+| first_name_kana  | string  | NOT NULL |
+| birth_day        | integer | NOT NULL |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchase
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column       | type        | options            |
+| -------------|------------ |------------------- |
+| image        |             | NOT NULL           |
+| title        | string      | NOT NULL           |
+| description  | text        | NOT NULL           |
+| category     | ActiveHash  | NOT NULL           |
+| condition    | ActiveHash  | NOT NULL           |
+| delivery_fee | ActiveHash  | NOT NULL           |
+| area         | ActiveHash  | NOT NULL           |
+| days         | ActiveHash  | NOT NULL           |
+| price        | integer     | NOT NULL           |
+| user         | references  | foreign_key : true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :users
+- has_one :purchase
 
-* Services (job queues, cache servers, search engines, etc.)
+## purchase テーブル
 
-* Deployment instructions
+| Column | type       | options            |
+| ------ |----------- |------------------- |
+| user   | references | foreign_key : true |
+| item   | references | foreign_key : true |
 
-* ...
+### Association
+
+- belongs_to :users
+- has_one :items
+- has_one :address
+
+## address テーブル
+
+| Column       | type       | options            |
+| ------------ |----------- |------------------- |
+| postal_code  | integer    | NOT NULL           |
+| prefecture   | ActiveHash |                    |
+| city         | ActiveHash |                    |
+| house_number | string     | NOT NULL           |
+| building     | string     |                    |
+| phone_number | string     | NOT NULL           |
+
+
+### Association
+
+- has_one :purchase

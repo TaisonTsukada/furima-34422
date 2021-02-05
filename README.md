@@ -1,24 +1,67 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | type    | options  |
+| ----------------   |-------- |--------- |
+| nickname           | string  | NOT NULL |
+| email              | string  | NOT NULL |
+| encrypted_password | string  | NOT NULL |
+| family_name        | string  | NOT NULL |
+| first_name         | string  | NOT NULL |
+| family_name_kana   | string  | NOT NULL |
+| first_name_kana    | string  | NOT NULL |
+| birth_day          | date    | NOT NULL |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchases
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column           | type        | options            |
+| ---------------- |------------ |------------------- |
+| title            | string      | NOT NULL           |
+| description      | text        | NOT NULL           |
+| category_id      | integer     | NOT NULL           |
+| condition_id     | integer     | NOT NULL           |
+| delivery_fee_id  | integer     | NOT NULL           |
+| area_id          | integer     | NOT NULL           |
+| delivery_days_id | integer     | NOT NULL           |
+| price            | integer     | NOT NULL           |
+| user             | references  | foreign_key : true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :purchase
 
-* Services (job queues, cache servers, search engines, etc.)
+## purchase テーブル
 
-* Deployment instructions
+| Column | type       | options            |
+| ------ |----------- |------------------- |
+| user   | references | foreign_key : true |
+| item   | references | foreign_key : true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :address
+
+## address テーブル
+
+| Column       | type       | options            |
+| ------------ |----------- |------------------- |
+| postal_code  | string     | NOT NULL           |
+| area_id      | integer    | NOT NULL           |
+| city         | string     | NOT NULL           |
+| house_number | string     | NOT NULL           |
+| building     | string     |                    |
+| phone_number | string     | NOT NULL           |
+| purchase     | references | foreign_key : true |
+
+### Association
+
+- belongs_to :purchase

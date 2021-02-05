@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase
+- has_many :purchases
 
 ## items テーブル
 
@@ -34,7 +34,7 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :purchase
 
 ## purchase テーブル
@@ -46,8 +46,8 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one :address
 
 ## address テーブル
@@ -55,8 +55,8 @@
 | Column       | type       | options            |
 | ------------ |----------- |------------------- |
 | postal_code  | string     | NOT NULL           |
-| area_id      | integer    |                    |
-| city         | string     |                    |
+| area_id      | integer    | NOT NULL           |
+| city         | string     | NOT NULL           |
 | house_number | string     | NOT NULL           |
 | building     | string     |                    |
 | phone_number | string     | NOT NULL           |

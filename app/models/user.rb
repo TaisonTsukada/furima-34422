@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nickname, presence: true
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: ' Full-width characters' } do
-    validates :family_name, presence: true
-    validates :first_name, presence: true
+    validates :family_name
+    validates :first_name
   end
   with_options presence: true, format: { with: /\A[ア-ン゛゜ァ-ォャ-ョー「」、]+\z/, message: 'Full-width katakana characters' } do
     validates :family_name_kana

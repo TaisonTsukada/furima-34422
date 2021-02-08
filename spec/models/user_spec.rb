@@ -80,12 +80,12 @@ RSpec.describe User, type: :model do
       it 'family_nameが全角でないと登録できない' do
         @user.family_name = 'yamada'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name  Full-width characters")
+        expect(@user.errors.full_messages).to include('Family name  Full-width characters')
       end
       it 'first_nameが全角でないと登録できない' do
         @user.first_name = 'tarou'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name  Full-width characters")
+        expect(@user.errors.full_messages).to include('First name  Full-width characters')
       end
       it 'family_name_kanaがカタカナ入力でないと登録できない' do
         @user.family_name_kana = 'やまだ'

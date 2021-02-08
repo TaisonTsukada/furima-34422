@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :user
 
   with_options presence: true do
-    validates :title 
+    validates :title
     validates :description
     validates :image
   end
@@ -22,7 +22,8 @@ class Item < ApplicationRecord
     validates :delivery_days_id
   end
 
-  with_options presence: true, format: {with: /\A[0-9]+\z/, message: 'Price Half-width number'}, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 } do
+  with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'Price Half-width number' },
+               numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 } do
     validates :price
   end
 end

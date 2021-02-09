@@ -19,11 +19,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    set_item
   end
 
   def destroy
-    set_item
     if current_user.id == @item.user.id
       @item.destroy
       redirect_to root_path

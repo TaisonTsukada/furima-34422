@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :condition_id
     validates :delivery_fee_id
     validates :area_id
-    validates :delivery_days_id
+    validates :delivery_day_id
   end
 
   with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'Price Half-width number' },

@@ -28,7 +28,7 @@
 | condition_id     | integer     | NOT NULL           |
 | delivery_fee_id  | integer     | NOT NULL           |
 | area_id          | integer     | NOT NULL           |
-| delivery_days_id | integer     | NOT NULL           |
+| delivery_day_id  | integer     | NOT NULL           |
 | price            | integer     | NOT NULL           |
 | user             | references  | foreign_key : true |
 

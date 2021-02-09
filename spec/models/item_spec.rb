@@ -48,9 +48,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Area must be other than 1')
       end
       it '発送までの日数を選択しないと出品できない' do
-        @item.delivery_days_id = 1
+        @item.delivery_day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery days must be other than 1')
+        expect(@item.errors.full_messages).to include('Delivery day must be other than 1')
       end
       it '販売価格が半角英数字以外だったら出品できない' do
         @item.price = '１１１１'

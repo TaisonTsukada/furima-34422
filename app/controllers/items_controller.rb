@@ -30,6 +30,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if Purchase.exists?(item_id: @item.id)
+    redirect_to root_path
+    end
     
   end
 
